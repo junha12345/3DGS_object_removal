@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+build/
+dist/
+*.egg-info/
+data/
+models/
+output/
+checkpoints/
+*.pth
+*.pt
+*.ply
+_sam2_work/
+.vscode/

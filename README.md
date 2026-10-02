@@ -58,3 +58,17 @@ SAM2 마스크를 정답 라벨로 사용해, **RGB 재구성 손실에 객체 �
   <figcaption><strong>마스크 검증 후 객체 제거</strong> — 여러 시점에서 확인된 후보만 삭제</figcaption>
   <img src="./assets/frame_000107_multiview.png" alt="같은 시점에서 여러 시점 마스크 검증을 적용해 배경 손상이 줄어든 객체 제거 결과" />
 </figure>
+
+## 코드와 학습 라벨
+
+| 파일 | 내용 |
+| --- | --- |
+| [train.py](train.py) | RGB 재구성과 Object Class Loss를 함께 학습 |
+| [scene/gaussian_model.py](scene/gaussian_model.py) | Gaussian별 클래스 점수 관리·저장 |
+| [local_tools/sam2_segment_image.py](local_tools/sam2_segment_image.py), [sam2_track_object.py](local_tools/sam2_track_object.py) | SAM2 객체 마스크 생성·전파 |
+| [local_tools/merge_sam2_object_masks.py](local_tools/merge_sam2_object_masks.py) | 객체별 마스크를 클래스 라벨로 병합 |
+| [labels](labels) | 실제 학습 마스크 438장과 클래스 번호 정의 |
+| [local_tools/filter_ply_by_object_logit.py](local_tools/filter_ply_by_object_logit.py) | 선택한 라벨의 Gaussian을 삭제 |
+| [local_tools/validate_removal_multiview.py](local_tools/validate_removal_multiview.py) | 여러 시점 마스크로 삭제 후보를 검증하고 결과 렌더링 |
+
+환경 설정부터 학습·객체 제거까지의 실행 방법은 [WORKFLOW](docs/WORKFLOW.md)에 정리했습니다. 기반 코드와 라이선스는 [NOTICE](NOTICE.md), [LICENSE](LICENSE.md)를 참고하세요.

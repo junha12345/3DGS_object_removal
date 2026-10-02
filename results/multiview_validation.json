@@ -1,0 +1,242 @@
+{
+  "method": "Visibility-aware masked color gradients; frozen scene",
+  "parameters": {
+    "model_dir": "models/object_scene",
+    "mask_dir": "labels/class_masks",
+    "output_dir": "output/multiview",
+    "iteration": 15000,
+    "labels": [
+      1,
+      3
+    ],
+    "views": 48,
+    "vote_width": 640,
+    "margin": 8,
+    "support_threshold": 0.8,
+    "min_positive_views": 3,
+    "max_negative_fraction": 0.1,
+    "eval_frames": [
+      "frame_000107.jpg",
+      "frame_000146.jpg",
+      "frame_000219.jpg",
+      "frame_000292.jpg",
+      "frame_000375.jpg",
+      "frame_000417.jpg"
+    ]
+  },
+  "vote_frames": [
+    "frame_000001.jpg",
+    "frame_000010.jpg",
+    "frame_000019.jpg",
+    "frame_000028.jpg",
+    "frame_000037.jpg",
+    "frame_000046.jpg",
+    "frame_000056.jpg",
+    "frame_000065.jpg",
+    "frame_000074.jpg",
+    "frame_000083.jpg",
+    "frame_000092.jpg",
+    "frame_000101.jpg",
+    "frame_000112.jpg",
+    "frame_000121.jpg",
+    "frame_000130.jpg",
+    "frame_000139.jpg",
+    "frame_000149.jpg",
+    "frame_000158.jpg",
+    "frame_000168.jpg",
+    "frame_000177.jpg",
+    "frame_000186.jpg",
+    "frame_000195.jpg",
+    "frame_000204.jpg",
+    "frame_000213.jpg",
+    "frame_000224.jpg",
+    "frame_000233.jpg",
+    "frame_000242.jpg",
+    "frame_000251.jpg",
+    "frame_000260.jpg",
+    "frame_000269.jpg",
+    "frame_000279.jpg",
+    "frame_000288.jpg",
+    "frame_000298.jpg",
+    "frame_000307.jpg",
+    "frame_000316.jpg",
+    "frame_000325.jpg",
+    "frame_000335.jpg",
+    "frame_000344.jpg",
+    "frame_000353.jpg",
+    "frame_000362.jpg",
+    "frame_000371.jpg",
+    "frame_000381.jpg",
+    "frame_000391.jpg",
+    "frame_000400.jpg",
+    "frame_000409.jpg",
+    "frame_000419.jpg",
+    "frame_000428.jpg",
+    "frame_000438.jpg"
+  ],
+  "evaluation_frames": [
+    "frame_000107.jpg",
+    "frame_000146.jpg",
+    "frame_000219.jpg",
+    "frame_000292.jpg",
+    "frame_000375.jpg",
+    "frame_000417.jpg"
+  ],
+  "original_gaussians": 879762,
+  "deleted_gaussians": {
+    "label_only": 107634,
+    "multiview": 10878,
+    "mask_only_diagnostic": 11353
+  },
+  "per_view_metrics": {
+    "label_only": {
+      "frame_000107": {
+        "protected_mae": 0.03642895072698593,
+        "protected_changed_fraction": 0.13417703850180296,
+        "target_change_mae": 0.32419484853744507,
+        "protected_pixels": 859700,
+        "target_pixels": 28954
+      },
+      "frame_000146": {
+        "protected_mae": 0.03470126911997795,
+        "protected_changed_fraction": 0.15130572785591204,
+        "target_change_mae": 0.28906041383743286,
+        "protected_pixels": 867026,
+        "target_pixels": 23445
+      },
+      "frame_000219": {
+        "protected_mae": 0.037579331547021866,
+        "protected_changed_fraction": 0.17678141953774565,
+        "target_change_mae": 0.27736005187034607,
+        "protected_pixels": 886049,
+        "target_pixels": 8222
+      },
+      "frame_000292": {
+        "protected_mae": 0.04005342721939087,
+        "protected_changed_fraction": 0.12751824642903115,
+        "target_change_mae": 0.39375051856040955,
+        "protected_pixels": 877843,
+        "target_pixels": 14711
+      },
+      "frame_000375": {
+        "protected_mae": 0.030522771179676056,
+        "protected_changed_fraction": 0.14259016344782788,
+        "target_change_mae": 0.3927461504936218,
+        "protected_pixels": 875937,
+        "target_pixels": 16088
+      },
+      "frame_000417": {
+        "protected_mae": 0.041466351598501205,
+        "protected_changed_fraction": 0.1817769980780578,
+        "target_change_mae": 0.3314964175224304,
+        "protected_pixels": 882961,
+        "target_pixels": 10730
+      }
+    },
+    "multiview": {
+      "frame_000107": {
+        "protected_mae": 2.159704308724031e-06,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.245595782995224,
+        "protected_pixels": 859700,
+        "target_pixels": 28954
+      },
+      "frame_000146": {
+        "protected_mae": 2.2986353087617317e-06,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.18496985733509064,
+        "protected_pixels": 867026,
+        "target_pixels": 23445
+      },
+      "frame_000219": {
+        "protected_mae": 5.915483143326128e-07,
+        "protected_changed_fraction": 1.128605754309299e-06,
+        "target_change_mae": 0.27334752678871155,
+        "protected_pixels": 886049,
+        "target_pixels": 8222
+      },
+      "frame_000292": {
+        "protected_mae": 6.878247518216085e-07,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.36909011006355286,
+        "protected_pixels": 877843,
+        "target_pixels": 14711
+      },
+      "frame_000375": {
+        "protected_mae": 1.4051819618998707e-07,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.2784040570259094,
+        "protected_pixels": 875937,
+        "target_pixels": 16088
+      },
+      "frame_000417": {
+        "protected_mae": 1.5567428590657073e-06,
+        "protected_changed_fraction": 1.2458081387513152e-05,
+        "target_change_mae": 0.2326705902814865,
+        "protected_pixels": 882961,
+        "target_pixels": 10730
+      }
+    },
+    "mask_only_diagnostic": {
+      "frame_000107": {
+        "protected_mae": 2.189618271586369e-06,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.25623056292533875,
+        "protected_pixels": 859700,
+        "target_pixels": 28954
+      },
+      "frame_000146": {
+        "protected_mae": 2.3849227090977365e-06,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.19124744832515717,
+        "protected_pixels": 867026,
+        "target_pixels": 23445
+      },
+      "frame_000219": {
+        "protected_mae": 6.005508339512744e-07,
+        "protected_changed_fraction": 1.128605754309299e-06,
+        "target_change_mae": 0.2796446681022644,
+        "protected_pixels": 886049,
+        "target_pixels": 8222
+      },
+      "frame_000292": {
+        "protected_mae": 6.895374440318847e-07,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.38046184182167053,
+        "protected_pixels": 877843,
+        "target_pixels": 14711
+      },
+      "frame_000375": {
+        "protected_mae": 1.4786870394800644e-07,
+        "protected_changed_fraction": 0.0,
+        "target_change_mae": 0.28836432099342346,
+        "protected_pixels": 875937,
+        "target_pixels": 16088
+      },
+      "frame_000417": {
+        "protected_mae": 1.7811340740081505e-06,
+        "protected_changed_fraction": 1.4723187094333725e-05,
+        "target_change_mae": 0.2401323765516281,
+        "protected_pixels": 882961,
+        "target_pixels": 10730
+      }
+    }
+  },
+  "aggregate_metrics": {
+    "label_only": {
+      "protected_mae": 0.036792016898592315,
+      "protected_changed_fraction": 0.15235826564172958,
+      "target_change_mae": 0.3347680668036143
+    },
+    "multiview": {
+      "protected_mae": 1.2391622898159464e-06,
+      "protected_changed_fraction": 2.2644478569704086e-06,
+      "target_change_mae": 0.26401298741499585
+    },
+    "mask_only_diagnostic": {
+      "protected_mae": 1.2989386727705703e-06,
+      "protected_changed_fraction": 2.641965474773837e-06,
+      "target_change_mae": 0.27268020311991376
+    }
+  }
+}

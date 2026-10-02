@@ -1,0 +1,36 @@
+{
+  "format": "single-channel PNG; pixel value is the class id",
+  "ignore_label": 0,
+  "num_objects": 5,
+  "remove_labels": [
+    1,
+    3
+  ],
+  "classes": [
+    {
+      "id": 0,
+      "name": "unassigned",
+      "supervised": false
+    },
+    {
+      "id": 1,
+      "name": "blue_bunny_plush",
+      "supervised": true
+    },
+    {
+      "id": 2,
+      "name": "cup",
+      "supervised": true
+    },
+    {
+      "id": 3,
+      "name": "purple_plush",
+      "supervised": true
+    },
+    {
+      "id": 4,
+      "name": "table",
+      "supervised": true
+    }
+  ]
+}
