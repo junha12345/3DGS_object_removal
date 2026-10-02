@@ -5,15 +5,15 @@
 3DGS 학습·렌더링에는 NVIDIA GPU와 CUDA 확장을 빌드할 CUDA Toolkit, C++ 컴파일러가 필요합니다. 이 실험의 3DGS 환경은 Python 3.10 / PyTorch 1.13.1 / CUDA 11.6을 사용했습니다.
 
 ```bash
-git clone --recursive https://github.com/junha12345/3DGS_object_removal.git
+git clone https://github.com/junha12345/3DGS_object_removal.git
 cd 3DGS_object_removal
 conda env create -f environment.yml
 conda activate gaussian_splatting_object
-python -m pip install --no-build-isolation ./submodules/diff-gaussian-rasterization
-python -m pip install --no-build-isolation ./submodules/simple-knn
+python -m pip install --no-build-isolation 'git+https://github.com/graphdeco-inria/diff-gaussian-rasterization.git@9c5c2028f6fbee2be239bc4c9421ff894fe4fbe0'
+python -m pip install --no-build-isolation 'git+https://gitlab.inria.fr/bkerbl/simple-knn.git@86710c2d4b46680c02301765dd79e465819c8f19'
 ```
 
-이미 일반 clone으로 받았다면 `git submodule update --init --recursive`로 CUDA 확장 코드를 받습니다. `fused-ssim`은 선택 사항이며, 설치하지 않으면 기본 SSIM 구현을 사용합니다.
+CUDA 확장은 외부 저장소에서 별도로 설치합니다. `fused-ssim`은 선택 사항이며, 설치하지 않으면 기본 SSIM 구현을 사용합니다.
 
 SAM2는 PyTorch 2.x를 사용하는 별도 환경에 설치합니다. 설치와 체크포인트 다운로드는 [SAM2 저장소](https://github.com/facebookresearch/sam2)의 안내를 따릅니다. 아래 SAM2 명령은 그 환경에서 실행하고, 3DGS 학습 전에 다시 `gaussian_splatting_object` 환경을 활성화합니다.
 
