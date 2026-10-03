@@ -144,3 +144,43 @@ python local_tools/validate_removal_multiview.py \
 `mask_only_diagnostic` 출력은 클래스 조건 없이 마스크 검증만 적용한 비교 결과입니다. README에서 소개하는 방법은 클래스 후보와 마스크 검증을 함께 사용한 `multiview`입니다.
 
 실제 실행 기록은 [results/multiview_validation.json](../results/multiview_validation.json)에 있습니다. 바깥쪽 영역의 변화는 크게 줄었지만 인형의 일부 흔적은 남았습니다. 대상 영역의 이미지 변화량은 객체 제거 정확도를 뜻하지 않습니다.
+
+## 7. Learning removal strength and directional corrections
+
+This experiment keeps the Gaussian geometry, colors, original opacity, and class logits fixed. It first learns a shared removal score, then freezes that score and learns three direction coefficients per Gaussian. Both stages use the same balanced mask MSE with the original compositing weights. Edited RGB is used for evaluation.
+
+If masks were created on distorted input frames, align them with the COLMAP images first. Masks already created on undistorted images can be used directly.
+
+```bash
+python local_tools/align_colmap_class_masks.py \
+  --scene-dir data/scene \
+  --mask-dir labels/class_masks \
+  --output-dir output/aligned_masks
+
+python local_tools/train_removal_gate.py \
+  --model-dir models/object_scene \
+  --mask-dir output/aligned_masks/masks \
+  --output-dir output/removal_strength \
+  --negative-region target-complement
+```
+
+`target-complement` uses the interior of the SAM target mask as the removal region and its safe exterior as the retention region. This assumes the mask covers the complete target; missed object pixels receive incorrect retention supervision. The initial `retained` experiment supervises only classes 2 and 4 as retention regions and ignores class 0. It showed more surrounding background change. Run it with `--negative-region retained` and a separate output directory to reproduce that comparison.
+
+The recorded experiment uses 96 training views, 12 validation views, and six evaluation views. These camera lists and the interpolated camera path are specific to the captured scene represented by the supplied labels. Evaluation views are excluded from removal fitting, but were available during the original 3DGS reconstruction and class training.
+
+The output includes `common_gate.pth`, `removal_gate.pth`, `split.json`, `training_history.json`, `results.json`, comparison renders, and an animation of an interpolated camera path. An optional `--oracle-dir` supplies the previous experiment's baseline PNGs for evaluation.
+
+For inference, provide the original PLY, the learned checkpoint, and a camera JSON. A SAM mask is not required:
+
+```bash
+python local_tools/render_removal_gate.py \
+  --source-ply models/object_scene/point_cloud/iteration_15000/point_cloud.ply \
+  --checkpoint output/removal_strength/removal_gate.pth \
+  --cameras-json models/object_scene/cameras.json \
+  --frame frame_000146.jpg \
+  --output output/removal_strength/inference.png
+```
+
+Use `--common-only` to render without directional corrections. The checkpoint must match the original PLY, which is checked by its SHA-256 hash. Large model files and learned checkpoints are not included in this repository.
+
+The measured results are in [removal_strength_validation.json](../results/removal_strength_validation.json). Mask agreement improved and object traces were reduced, but some traces and background changes remain. Mask MSE and target RGB change are not object removal accuracy.
